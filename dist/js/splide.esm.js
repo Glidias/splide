@@ -1,6 +1,6 @@
 /*!
  * Splide.js
- * Version  : 2.4.20
+ * Version  : 2.4.21
  * License  : MIT
  * Copyright: 2020 Naotoshi Fujita
  */
@@ -1237,6 +1237,13 @@ var DEFAULTS = {
    * @type {boolean}
    */
   drag: true,
+
+  /**
+   * The distance to drag before actual drag starts.
+   *
+   * @type {number}
+   */
+  dragDistanceStartThreshold: 2,
 
   /**
    * The angle threshold for drag.
@@ -3956,6 +3963,12 @@ var FRICTION_REDUCER = 7;
     var offset = _ref.offset;
 
     if (Splide.State.is(MOVING) && Splide.options.waitForTransition) {
+      return false;
+    }
+
+    var dist = isVertical ? offset.y : offset.x;
+
+    if (drag_abs(dist) < Splide.options.dragDistanceStartThreshold) {
       return false;
     }
 

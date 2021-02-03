@@ -197,7 +197,10 @@ export default ( Splide, Components ) => {
 		if ( Splide.State.is( MOVING ) && Splide.options.waitForTransition ) {
 			return false;
 		}
-
+		let dist = isVertical ? offset.y : offset.x;
+		if (abs(dist) < Splide.options.dragDistanceStartThreshold) {
+			return false;
+		}
 		let angle = Math.atan( abs( offset.y ) / abs( offset.x ) ) * 180 / Math.PI;
 
 		if ( isVertical ) {

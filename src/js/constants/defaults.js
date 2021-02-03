@@ -267,6 +267,13 @@ export const DEFAULTS = {
 	drag: true,
 
 	/**
+	 * The distance to drag before actual drag starts.
+	 *
+	 * @type {number}
+	 */
+	dragDistanceStartThreshold: 2,
+
+	/**
 	 * The angle threshold for drag.
 	 * The slider starts moving only when the drag angle is less than this threshold.
 	 *
